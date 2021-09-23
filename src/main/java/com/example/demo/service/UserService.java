@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.annotation.Cache;
-import com.example.demo.annotation.CacheDelete;
+import annotation.Cache;
+import annotation.CacheDelete;
+
 import com.example.demo.dao.UserMapper;
 import com.example.demo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
