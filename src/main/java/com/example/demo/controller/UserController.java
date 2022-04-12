@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +24,11 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "uid", value = "用户的唯一标识", required = true, dataType = "String"),
             @ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "did", value = "用户基本信息表ID", required = true, dataType = "String"),
             @ApiImplicitParam(name = "password", value = "用户密码", required = true, dataType = "String")
     })
     @PostMapping
-    public void insert(String uid, String name,String did,String password) {
-        userService.insertUser(new User(uid,name,did,password));
+    public void insert(String uid, String name,String password) {
+        userService.insertUser(new User(uid,name,password));
     }
 
 

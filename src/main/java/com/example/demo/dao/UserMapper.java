@@ -17,15 +17,14 @@ public interface UserMapper {
     @Results({
             @Result(property = "uid", column = "uid"),
             @Result(property = "name", column = "name"),
-            @Result(property = "did", column = "did"),
             @Result(property = "password", column = "password")
     })
 
     @Select("SELECT uid,name,did,password FROM user")
     List<User> findAll();
 
-    @Insert("INSERT INTO user(uid,name,did,password) VALUES(#{uid}, #{name},#{did},#{password})")
-    int insert(@Param("uid") String uid, @Param("name") String name, @Param("did") String did,@Param("password") String password);
+    @Insert("INSERT INTO user(uid,name,password) VALUES(#{uid}, #{name},#{password})")
+    int insert(@Param("uid") String uid, @Param("name") String name,@Param("password") String password);
 
     @Delete("DELETE FROM user WHERE uid =#{uid}")
     int delete(String uid);

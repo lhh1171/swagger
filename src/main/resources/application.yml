@@ -1,7 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/zzz
+    url: jdbc:mysql://localhost:3306/lighthouse
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+server:
+  port: 80

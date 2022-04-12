@@ -1,12 +1,9 @@
 package com.example.demo.service;
 
-import annotation.Cache;
-import annotation.CacheDelete;
+
 
 import com.example.demo.dao.UserMapper;
 import com.example.demo.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,14 +20,13 @@ public class UserService {
         return userMapper.delete(uid);
     }
 
-    @CacheDelete
-    public int insertUser(User user) {
-        return userMapper.insert(user.getUid(),user.getName(),user.getDid(),user.getPassword());
+    public void insertUser(User user) {
+        userMapper.insert(user.getUid(), user.getName(), user.getPassword());
     }
 
-    @Cache
-    public User findByName(String name){
-        return userMapper.findByName(name);
+
+    public void findByName(String name){
+        userMapper.findByName(name);
     }
 
     public List<User> findAll(){
