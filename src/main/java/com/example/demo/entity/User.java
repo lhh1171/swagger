@@ -7,34 +7,30 @@ package com.example.demo.entity;
 
 public class User {
 
-    String uid;
+    String tel;
     String name;
     String password;
 
-    public User(String uid, String name,String password) {
-        this.uid = uid;
+    public User(String tel, String name, String password) {
+        this.tel = tel;
         this.name = name;
         this.password = password;
     }
 
-    public User() {
-    }
-
-    public String getUid() {
-        return uid;
+    public String getTel() {
+        return tel;
     }
 
     public String getName() {
         return name;
     }
 
-
     public String getPassword() {
         return password;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public void setName(String name) {

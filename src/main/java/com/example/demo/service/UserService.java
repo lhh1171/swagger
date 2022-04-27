@@ -16,12 +16,12 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
-    public int deleteUser(String uid) {
-        return userMapper.delete(uid);
+    public int deleteUser(String tel) {
+        return userMapper.delete(tel);
     }
 
     public void insertUser(User user) {
-        userMapper.insert(user.getUid(), user.getName(), user.getPassword());
+        userMapper.insert(user.getTel(), user.getName(), user.getPassword());
     }
 
 
@@ -31,5 +31,8 @@ public class UserService {
 
     public List<User> findAll(){
         return  userMapper.findAll();
+    }
+    public void updatePassword(String tel,String password){
+        userMapper.updatePassword(tel,password);
     }
 }

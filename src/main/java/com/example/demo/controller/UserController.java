@@ -22,15 +22,25 @@ public class UserController {
 
     @ApiOperation(value = "添加用户", notes = "添加用户")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "uid", value = "用户的唯一标识", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "tel", value = "用户的唯一标识", required = true, dataType = "String"),
             @ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String"),
             @ApiImplicitParam(name = "password", value = "用户密码", required = true, dataType = "String")
     })
-    @PostMapping
-    public void insert(String uid, String name,String password) {
-        userService.insertUser(new User(uid,name,password));
+
+    @PostMapping("/insert")
+    public void insert(String tel, String name,String password) {
+        userService.insertUser(new User(tel,name,password));
     }
 
+    @ApiOperation(value = "修改用户密码", notes = "通过tel修改密码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "tel", value = "用户的唯一标识", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "用户密码", required = true, dataType = "String")
+    })
+    @PostMapping("/update")
+    public void updatePassword( String tel,String password) {
+        userService.updatePassword(tel,password);
+    }
 
     @ApiOperation(value = "查询所有用户", notes = "查询所有用户")
     @GetMapping("/all")
@@ -39,10 +49,11 @@ public class UserController {
     }
 
 
-    @ApiOperation(value = "删除用户信息", notes = "通过id删除用户")
-    @DeleteMapping("/{id}")
-    public int  deleteById(@PathVariable String id) {
-       return userService.deleteUser(id);
+    @ApiOperation(value = "删除用户信息", notes = "通过tel删除用户")
+    @DeleteMapping("/{tel}")
+    public int  deleteById(@PathVariable String tel) {
+       return userService.deleteUser(tel);
     }
+
 
 }

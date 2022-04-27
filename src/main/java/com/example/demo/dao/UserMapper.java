@@ -15,17 +15,21 @@ public interface UserMapper {
     User findByName(@Param("name") String name);
 
     @Results({
-            @Result(property = "uid", column = "uid"),
+            @Result(property = "tel", column = "tel"),
             @Result(property = "name", column = "name"),
             @Result(property = "password", column = "password")
     })
 
-    @Select("SELECT uid,name,did,password FROM user")
+    @Select("SELECT tel,name,password FROM user")
     List<User> findAll();
 
-    @Insert("INSERT INTO user(uid,name,password) VALUES(#{uid}, #{name},#{password})")
-    int insert(@Param("uid") String uid, @Param("name") String name,@Param("password") String password);
+    @Insert("INSERT INTO user(tel,name,password) VALUES(#{tel}, #{name},#{password})")
+    int insert(@Param("tel") String uid, @Param("name") String name,@Param("password") String password);
 
-    @Delete("DELETE FROM user WHERE uid =#{uid}")
-    int delete(String uid);
+    @Delete("DELETE FROM user WHERE tel =#{tel}")
+    int delete(String tel);
+
+    @Update("UPDATE user SET password=#{password} where tel=#{tel}")
+    int updatePassword(String tel,String password);
+
 }
