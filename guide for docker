@@ -1,0 +1,89 @@
+1、安装febootstrap
+
+
+#暴露端口
+docker run -d -i -t -p 0.0.0.0::22 centos65-test:ssh /bin/bash
+docker ps
+#看到映射端口，如33333
+#另一台物理机通过暴露的端口访问
+ssh 10.2.138.29 -p 33333
+
+
+
+docker run -d ubuntu:latest /bin/sh -c 'while true;do echo hello world;sleep 1;done'
+
+docker logs 容器ID
+
+docker logs 18c313212935399ca2ed48e6bcbf589e0fd58363adfdfbac7111a0d9536d687c
+
+基本命令
+docker run -itd --name aaa ubuntu:latest bash
+docker ps
+docker rename aaa ccc
+docker ps
+
+指定主机名
+docker run -it --name docker3 -h lqc.cn ubuntu bash
+
+
+
+docker的重启策略如下:
+	no,默认策略，在容器退出时不重启容器
+	on-failure:3,在容器正常退出(退出状态非0)时重启容器
+	on-failure:3,在容器正常退出时重启容器，最多重启3次
+	always,在容器退出时候总重启容器
+	unless-stopped,在容器退出时候重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
+ 
+容器开机自启动
+docker run --restart=always -itd --name 容器名 镜像 bash
+docker run -itd --restart=always --name test666 centos bash
+
+如果创建时候未指定 --restart=always,可通过update命令设置
+docker update --restart=always 容器ID和名字
+
+docker通过cgroup来控制容器使用的资源配额，包括cpu,内存，磁盘
+cpu控制
+给容器实例分配512权重的cpu使用份额(根据份额竞争)
+docker run -it --cpu-shares 512 centos bash
+
+cat /sys/fs/cgroup/cpu/cpu.shares  
+
+亲和力设置
+查看进程号为一的对应cpu
+taskset -cp 1
+
+cpu切换有开销，所以要绑定cpu
+docker run -it --name cpu1 --cpuset-cpus 0,1 ubuntu bash
+
+docker run -it -m 128m ubuntu 
+
+docker run -it --name cpu1 --cpuset-cpus 0,1 -m 128m ubuntu bash
+
+数据映射(绑定文件夹)
+mkdir -p /var/www/html
+docker run -it --name web1 -v /var/www/html:/var/www/html ubuntu bash
+
+docker run -it --name web1 -v /var/www/html:/var/www/html ubuntu bash --device /dev/sda:/dev/sda --device-write-bps /dev/sda:1mb ubuntu /bin/bash
+
+
+先把docker里面的mysql启动
+docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql
+启动springBoot应用
+docker run -d -p 8080:8080 --name springboot-mybatis springboot-mybatis
+浏览器访问
+http://192.168.56.120:8080/swagger-ui.html#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
