@@ -31,7 +31,7 @@ public class Swagger2 implements WebMvcConfigurer {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
+                .title("Spring Boot中使用Swagger2")
                 .description("测试Swagger2")
                 .termsOfServiceUrl("http://localhost:8080")
                 .contact(new Contact("easy-arch", "localhost", "xxxxx@qq.com"))

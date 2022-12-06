@@ -10,7 +10,11 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-
+    @Results({
+            @Result(property = "tel", column = "tel"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "password", column = "password")
+    })
     @Select("SELECT * FROM user WHERE name =#{name}")
     User findByName(@Param("name") String name);
 
@@ -19,7 +23,6 @@ public interface UserMapper {
             @Result(property = "name", column = "name"),
             @Result(property = "password", column = "password")
     })
-
     @Select("SELECT tel,name,password FROM user")
     List<User> findAll();
 
